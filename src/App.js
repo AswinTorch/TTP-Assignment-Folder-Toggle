@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      toggle: true,
+    };
+  }
+
+  // Toggle button click handler to change toggle state
+  buttonClicked = () => {
+    this.setState((state) => ({
+      toggle: !state.toggle,
+    }));
+  };
+
+  render() {
+    // Conditional rendering
+    const display = this.state.toggle ? (
+      <ul>
+        <li>File 1</li>
+        <li>File 2</li>
+        <li>File 3</li>
+      </ul>
+    ) : null;
+
+    return (
+      <div className="App">
+        <h1>Folder Toggle</h1>
+        {display}
+        <button onClick={this.buttonClicked}>Toggle</button>
+      </div>
+    );
+  }
 }
 
 export default App;
